@@ -4,7 +4,10 @@ TestKoombea::Application.routes.draw do
   
   resources :posts
   #resources :content
+   
+    match '/' => 'posts#show', :constraints => { :subdomain => /.+/ }  
+    root :to => "posts#index"
   
-  root :to => "posts#index"
+  #root :to => "posts#index"
 
 end

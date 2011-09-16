@@ -1,9 +1,6 @@
 class PostsController < ApplicationController
   
-  #extend FriendlyId
-  #friendly_id :name, :Post => :slugged
   
-  #uses_tiny_mce(:only => [:new, :edit])
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   
   # GET /posts
@@ -21,7 +18,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by_subdomain!(request.subdomain)
+    #@post = Post.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
