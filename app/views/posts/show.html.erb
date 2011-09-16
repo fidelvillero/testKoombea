@@ -7,27 +7,13 @@
 
 <p>
   <b>Content:</b>
-  <%= @post.content %>
+  <%=h raw(@post.content) %>
 </p>
 
 <p>
   <b>Url:</b>
-  <%= @post.url %>
+  <%= h raw(@post.url) %>
 </p>
-
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
-
-<html> 
-<head> 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
-<title>Primer ejemplo con TinyMCE</title>
-<script type="text/javascript" src="/javascripts/tiny_mce/tiny_mce.js"></script> 
-<script type="text/javascript" src="/javascripts/ejemploTinyMCE_1.js"></script>
-</head> 
-<body onload="cargarTinyMCE();"> 
-<h1>Primer ejemplo con TinyMCE</h1>
-<textarea></textarea> 
-</body> 
-</html>

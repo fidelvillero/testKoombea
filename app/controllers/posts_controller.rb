@@ -1,10 +1,14 @@
 class PostsController < ApplicationController
   
+  #extend FriendlyId
+  #friendly_id :name, :Post => :slugged
+  
   #uses_tiny_mce(:only => [:new, :edit])
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   
   # GET /posts
   # GET /posts.xml
+  
   def index
     @posts = Post.all
 
@@ -83,3 +87,6 @@ class PostsController < ApplicationController
     end
   end
 end
+
+#Post.create! :title => "content"
+
