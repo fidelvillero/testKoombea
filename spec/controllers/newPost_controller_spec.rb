@@ -32,5 +32,26 @@ describe PostsController do
      end
   end
   
+  describe "edit" do
+     
+     it  "should be all success" do
+       verfPost = Post.create(:title => "fidel", :content => "title test", :url => "https://mail.google.com/mail/?shva=1#inbox/1326de4ee6eaf19a", :slug => "bla bla bla")
+       get 'edit', :id => verfPost.id
+       response.should be_success # == response.code.should == "200"
+     end
+     it "should add appropiated Post" do
+       verfPost = Post.create(:title => "fidel", :content => "title test", :url => "https://mail.google.com/mail/?shva=1#inbox/1326de4ee6eaf19a", :slug => "bla bla bla")
+       verfPost.id
+       get 'edit', :id => verfPost.id
+       assigns( :post ).should eq( verfPost )
+     end
+     
+     it "should render 'edit'" do
+       savePost = Post.create(:title => "fidel", :content => "title test", :url => "https://mail.google.com/mail/?shva=1#inbox/1326de4ee6eaf19a", :slug => "bla bla bla")
+       get 'edit', :id => savePost.id
+       response.should render_template 'posts/edit'
+     end
+     
+   end
   
 end
