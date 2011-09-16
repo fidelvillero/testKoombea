@@ -13,7 +13,13 @@
   <b>Urls:</b>
   <ul>
   <%- @post.urls.each do |url|  %>
+  <%- if url.link.index("http://0.0.0.0:3000/").nil?  %>
+  <li><%= link_to(url.link, url.link, html_options = {'target' => "_blank"}) %></li>
+    <!--<li><%=link_to url.link, url.link %></li> -->
+    <!-- xxxxx <li><%= link_to url.link, url.link %></li> -->
+    <%-elsif %>
     <li><%= link_to url.link, url.link %></li>
+    <%- end%>
   <%- end %>
   </ul>
 </p>
