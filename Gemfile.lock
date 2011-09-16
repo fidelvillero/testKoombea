@@ -89,7 +89,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  friendly_id (~> 4.0.0.beta8)
+  friendly_id
   haml (= 3.1.2)
   rails (= 3.0.10)
   rspec-rails

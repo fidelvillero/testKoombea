@@ -3,8 +3,10 @@ class PostsController < ApplicationController
   
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   
-  # GET /posts
-  # GET /posts.xml
+  #def old_action 
+  #  headers["Status"] = "301 Moved Permanently" 
+  #  redirect_to "http://www.newdomain.com/" 
+  #end
   
   def index
     @posts = Post.all
@@ -18,9 +20,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Post.find_by_subdomain!(request.subdomain)
-    #@post = Post.find(params[:id])
-
+    @post = Post.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post }

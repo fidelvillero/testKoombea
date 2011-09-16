@@ -4,16 +4,6 @@
 
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
-  <script type = "javascripts">
-  var valText = "^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)( [a-zA-Z0-9\-\.\?\,\'\/\\\+&%\$#_]*)?$"
-    
-    Function testUrl(textArea){
-      if ((textArea.value.match(valText)) && (textArea.value!='')) {  
-        alert('Password Correcta');   
-      }
-      
-    } 
-  </script>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
@@ -33,11 +23,10 @@
     <%= f.label :content %><br />
     <%= f.text_area :content, :class => "mceEditor" %>
   </div>
-  <div class="field">
-    <%= f.label :url_related %><br />
-    <%= f.text_area :url, :class => "mceEditor" %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
+  
+  
 <% end %>

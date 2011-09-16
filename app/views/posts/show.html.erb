@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <b>Title:</b>
   <%= @post.title %>
@@ -11,9 +10,21 @@
 </p>
 
 <p>
-  <b>Url:</b>
-  <%= h raw(@post.url) %>
+  <b>Urls:</b>
+  <ul>
+  <%- @post.urls.each do |url|  %>
+    <li><%= link_to url.link, url.link %></li>
+  <%- end %>
+  </ul>
 </p>
 
+<%= form_for([@post, @post.urls.build]) do |f| %>
+<div class="field">
+  <%= f.label :link %><br />
+  <%= f.text_field :link %>
+  
+  <%= f.submit%>
+</div>
+<%- end -%>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
