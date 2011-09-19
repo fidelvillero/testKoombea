@@ -3,17 +3,10 @@ class PostsController < ApplicationController
   
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   
-  #def old_action 
-  #  headers["Status"] = "301 Moved Permanently" 
-  #  redirect_to "http://www.newdomain.com/" 
-  #end
-  
   def index
     @posts = Post.all
   end
 
-  # GET /posts/1
-  # GET /posts/1.xml
   def show
     @post = Post.find(params[:id])
   end
@@ -27,14 +20,13 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
   end
 
   def create
     @post = Post.new(params[:post])
-
+    # ---
     respond_to do |format|
       if @post.save
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
@@ -43,7 +35,7 @@ class PostsController < ApplicationController
         format.html { render :action => "new" }
         format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end
-    end
+    end #fin respond_to
   end
 
   # PUT /posts/1
