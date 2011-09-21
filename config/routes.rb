@@ -1,5 +1,9 @@
 TestKoombea::Application.routes.draw do
-  
+
+  root :to => "posts#index"
+
+  devise_for :users, :controllers => { :sessions => 'devise/sessions' }
+
   #head :moved_permanently, :location => "http://www.nuevodominio.com/"
   
   resources :posts do
@@ -7,7 +11,6 @@ TestKoombea::Application.routes.draw do
   end
   #resources :content
    
-    #match '/' => 'posts#show', :constraints => { :subdomain => /.+/ }  
-    root :to => "posts#index"
+    #match '/' => 'posts#show', :constraints => { :subdomain => /.+/ }
 
 end

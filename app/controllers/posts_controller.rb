@@ -13,7 +13,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-
+    @post.urls.build
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post }
@@ -26,9 +27,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    # ---
+    
     respond_to do |format|
       if @post.save
+        
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
@@ -38,8 +40,7 @@ class PostsController < ApplicationController
     end #fin respond_to
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.xml
+  
   def update
     @post = Post.find(params[:id])
 

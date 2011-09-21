@@ -3,14 +3,17 @@
 <%= tiny_mce if using_tiny_mce? %>
 
 <script>
+  var i = 0;
+  
 
   function addUrl(){
     var input = $("<input>")//funcion UI de jQuery
     input.attr({
       type: "text",
-      name: "name",
+      name: "post[urls_attributes][17][link]",
+      id: "",
       value: "",
-      //class: "clase"
+      //class: "new_post"
     })
     $("#padre").append(input)
   }
@@ -39,21 +42,21 @@
     <%= f.text_area :content, :class => "mceEditor" %>
   </div>
   <!-- 19-09-2011 -->
-  
-  <div class="actions">
-    <!-- ingresa un button con la accion como segundo parametro -->
-    <ul>
+      
       <%= button_to_function "add Url", "addUrl()", :class => "" %>
-    </ul>
-  </div>
+  
+  <%= f.fields_for :urls do |f2| %>
+      <%= f2.text_field :link %>
+  <% end %>
+  <%= f.fields_for :urls do |f2| %>
+      <%= f2.text_field :link %>
+  <% end %>
   
   <div id="padre"></div>
   
   <!-- 19-09-2011 -->
   <div class="actions">
     <%= f.submit %>
-    
   </div>
-  
   
 <% end %>
