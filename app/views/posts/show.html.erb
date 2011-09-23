@@ -1,30 +1,32 @@
 <p id="notice"><%= notice %></p>
-<!-- linea para agregar un links q te cierra la session -->
-<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 <p>
-  <b>Title:</b>
-  <%= @post.title %>
+	<div class="post">
+		<h2 class="title"><a href="#"><%= @post.title %></a></h2>	
+	</div>
 </p>
 
 <p>
-  <b>Content:</b>
-  <%=h raw(@post.content) %>
+	<div class="entry">
+		<p>
+	  		<b><%=h raw(@post.content) %></b>
+		</p>
+	</div>
 </p>
 
-<p>
-  <b>Urls:</b>
+  <b>related links</b>
   <ul>
   <%- @post.urls.each do |url|  %>
   <%- if url.link.index("http://0.0.0.0:3000/").nil?  %>
-  <li><%= link_to(url.link, url.link, html_options = {'target' => "_blank"}) %></li>
-    <!--<li><%=link_to url.link, url.link %></li> -->
-    <!-- xxxxx <li><%= link_to url.link, url.link %></li> -->
+  	<li>
+		<%= link_to(url.link, url.link, html_options = {'target' => "_blank"}) %>
+	</li>
     <%-elsif %>
-    <li><%= link_to url.link, url.link %></li>
+    <li>
+		<%= link_to url.link, url.link %>
+	</li>
     <%- end%>
   <%- end %>
   </ul>
-</p>
 
 <%= form_for([@post, @post.urls.build]) do |f| %>
 

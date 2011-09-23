@@ -1,10 +1,10 @@
 <script>
 	var count = $("#padre input").size();
-	
+
   var i = 0;
   function addUrl(){
 	var countInput = $('input.new_textField').size();
-	
+
     var input = $("<input>")//funcion UI de jQuery
     input.attr({
       type: "text",
@@ -31,8 +31,6 @@
     </div>
   <% end %>
 
-<!-- linea para agregar un links q te cierra la session -->
-<%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
 
   <div class="field">
     <%= f.label :title %><br />
@@ -46,8 +44,6 @@
    <div id="padre">	
       <%= button_to_function "add Url", "addUrl()", :class => "" %>
   </div>
-
-
   
   <!-- 19-09-2011 -->
   <div class="actions">

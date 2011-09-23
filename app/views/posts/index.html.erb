@@ -1,5 +1,3 @@
-<h1>Listing posts</h1>
-
 <table>
   <tr>
     <th>Title</th>
@@ -11,18 +9,16 @@
   </tr>
 
 
-<!-- linea para agregar un links q te cierra la session -->
-<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-
 <% @posts.each do |post| %>
   <tr>
-    <!-- <td><%= post.title %></td> -->
-    <td><%= link_to post.title, post %></td>
+	<div class="post">
+    <h2 class="title"><a href="#"><%= link_to post.title, post %></a></h2>
     <!--<td><%= h raw(post.content) %></td> -->
     <!-- <td><%= post.url %></td> -->
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+    <%= link_to 'Show', post %>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %>
+	</div>
   </tr>
 <% end %>
 </table>
