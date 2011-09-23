@@ -31,8 +31,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     
     respond_to do |format|
-      if @post.save
-        
+      if @post.save   
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else

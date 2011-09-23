@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+<!-- linea para agregar un links q te cierra la session -->
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 <p>
   <b>Title:</b>
   <%= @post.title %>
@@ -25,12 +27,7 @@
 </p>
 
 <%= form_for([@post, @post.urls.build]) do |f| %>
-<div class="field">
-  <%= f.label :link %><br />
-  <%= f.text_field :link %>
-  
-  <%= f.submit%>
-</div>
+
 <%- end -%>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

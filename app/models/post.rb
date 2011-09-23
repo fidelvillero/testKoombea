@@ -6,7 +6,5 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :urls
   
   extend FriendlyId
-  friendly_id :title, :use => :slugged
-  
-  
+  friendly_id :title, :use => :slugged 
 end

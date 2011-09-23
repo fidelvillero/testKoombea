@@ -10,6 +10,10 @@
     <th></th>
   </tr>
 
+
+<!-- linea para agregar un links q te cierra la session -->
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+
 <% @posts.each do |post| %>
   <tr>
     <!-- <td><%= post.title %></td> -->

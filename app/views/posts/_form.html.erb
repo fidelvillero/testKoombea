@@ -1,21 +1,21 @@
 <!-- estas lineas permiten ver y utilizar el 'tiny_mce' -->
-<%= javascript_include_tiny_mce_if_used %> -->
-<%= tiny_mce if using_tiny_mce? %>
+
 
 
 <script>
-	var count = $(".padre input").size();
+	var count = $("#padre input").size();
 	
-
   var i = 0;
   function addUrl(){
+	var countInput = $('input.new_textField').size();
+	
     var input = $("<input>")//funcion UI de jQuery
     input.attr({
       type: "text",
-      name: "post[urls_attributes][17][link]",
+      name: "post[urls_attributes]["+countInput+"][link]",
       id: "",
       value: "",
-      //class: "new_post"
+      class: "new_textField"
     })
     $("#padre").append(input)
   }
@@ -35,6 +35,9 @@
     </div>
   <% end %>
 
+<!-- linea para agregar un links q te cierra la session -->
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
+
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -44,18 +47,11 @@
     <%= f.text_area :content, :class => "mceEditor" %>
   </div>
   <!-- 19-09-2011 -->
-   <div id="padre">
-	
+   <div id="padre">	
       <%= button_to_function "add Url", "addUrl()", :class => "" %>
-  
-  <%= f.fields_for :urls do |f2| %>
-      <%= f2.text_field :link %>
-  <% end %>
-  <%= f.fields_for :urls do |f2| %>
-      <%= f2.text_field :link %>
-  <% end %>
-  
   </div>
+
+
   
   <!-- 19-09-2011 -->
   <div class="actions">
