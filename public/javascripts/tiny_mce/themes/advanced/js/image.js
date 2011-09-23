@@ -54,6 +54,8 @@ var ImageDialog = {
 	update : function() {
 		var f = document.forms[0], nl = f.elements, ed = tinyMCEPopup.editor, args = {}, el;
 
+		tinyMCEPopup.restoreSelection();
+
 		if (f.src.value === '') {
 			if (ed.selection.getNode().nodeName == 'IMG') {
 				ed.dom.remove(ed.selection.getNode());
@@ -75,7 +77,7 @@ var ImageDialog = {
 			args.style = this.styleVal;
 
 		tinymce.extend(args, {
-			src : f.src.value,
+			src : f.src.value.replace(/ /g, '%20'),
 			alt : f.alt.value,
 			width : f.width.value,
 			height : f.height.value
@@ -85,8 +87,10 @@ var ImageDialog = {
 
 		if (el && el.nodeName == 'IMG') {
 			ed.dom.setAttribs(el, args);
+			tinyMCEPopup.editor.execCommand('mceRepaint');
+			tinyMCEPopup.editor.focus();
 		} else {
-			ed.execCommand('mceInsertContent', false, '<img id="__mce_tmp" src="javascript:;" />', {skip_undo : 1});
+			ed.execCommand('mceInsertContent', false, '<img id="__mce_tmp" />', {skip_undo : 1});
 			ed.dom.setAttribs('__mce_tmp', args);
 			ed.dom.setAttrib('__mce_tmp', 'id', '');
 			ed.undoManager.add();
@@ -149,8 +153,8 @@ var ImageDialog = {
 			}
 
 			// Merge
-			st = tinyMCEPopup.dom.parseStyle(dom.serializeStyle(st));
-			this.styleVal = dom.serializeStyle(st);
+			st = tinyMCEPopup.dom.parseStyle(dom.serializeStyle(st), 'img');
+			this.styleVal = dom.serializeStyle(st, 'img');
 		}
 	},
 

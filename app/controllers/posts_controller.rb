@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   
-  
-  uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
+  #devise
+  before_filter :authenticate_user!
+  #uses_tiny_mce :only => [:new, :edit]
   
   def index
     @posts = Post.all
